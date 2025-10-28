@@ -25,7 +25,7 @@ function App() {
             <Route path="/" Component={HomePage} />
             <Route path="*" Component={() => <Navigate to="/" />} />
             <Route path="/countries" Component={CountriesList} />
-            <Route path="/countries/:countryId" Component={CountryDetails} />
+            <Route path="/countries/:code" Component={CountryDetails} />
             <Route path="/countries/new" Component={CountryForm} />
           </Route>
         </Routes>

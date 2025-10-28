@@ -11,8 +11,8 @@ export const GET_COUNTRIES = gql`
 `;
 
 export const GET_COUNTRY_DETAILS = gql`
-  query GetCountryDetails($id: ID!) {
-    country(id: $id) {
+  query GetCountryDetails($code: String!) {
+    country(code: $code) {
       id
       name
       code
@@ -22,12 +22,21 @@ export const GET_COUNTRY_DETAILS = gql`
 `;
 
 export const ADD_COUNTRY = gql`
-  mutation AddCountry($name: String!, $code: String!, $emoji: String!) {
-    addCountry(name: $name, code: $code, emoji: $emoji) {
+  mutation AddCountry($data: NewCountryInput!) {
+    addCountry(data: $data) {
       id
       name
       code
       emoji
+    }
+  }
+`;
+
+export const GET_CONTINENTS = gql`
+  query GetContinents {
+    continents {
+      id
+      name
     }
   }
 `;

@@ -1,7 +1,9 @@
 import { useQuery } from "@apollo/client";
-import { GET_COUNTRIES } from "../api/operations";
-import { Country } from "../types/Country";
 import { Link } from "react-router-dom";
+
+import { GET_COUNTRIES } from "../api/operations";
+
+import { Country } from "../types/Country";
 
 export function CountriesList() {
   const { loading, error, data } = useQuery(GET_COUNTRIES);
@@ -17,7 +19,7 @@ export function CountriesList() {
       {countries.map((country: Country) => (
         <article key={country.code}>
           {country.name} {country.emoji}
-          <Link to={`/countries/${country.id}`}>Details</Link>
+          <Link to={`/countries/${country.code}`}>Details</Link>
         </article>
       ))}
     </ul>
