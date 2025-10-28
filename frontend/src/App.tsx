@@ -7,8 +7,7 @@ import { CountryDetails } from "./pages/CountryDetails";
 import { CountryForm } from "./pages/CountryForm";
 import { CountriesList } from "./pages/CountriesList";
 import { HomePage } from "./pages/Home";
-
-import "./App.css";
+import { Toaster } from "./components/ui/sonner";
 
 const client = new ApolloClient({
   uri: "/api",
@@ -30,6 +29,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </ApolloProvider>
   );
 }

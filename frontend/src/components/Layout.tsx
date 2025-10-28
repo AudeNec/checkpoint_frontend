@@ -3,11 +3,11 @@ import { Header } from "./Header";
 
 export function PageLayout() {
   return (
-    <body>
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main>
+      <main className="container mx-auto px-4 py-8">
         <Outlet />
       </main>
-    </body>
+    </div>
   );
 }

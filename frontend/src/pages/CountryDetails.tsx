@@ -1,6 +1,14 @@
 import { useParams } from "react-router-dom";
 import { GET_COUNTRY_DETAILS } from "../api/operations";
 import { useQuery } from "@apollo/client/react/hooks/useQuery";
+import {
+  Item,
+  ItemMedia,
+  ItemContent,
+  ItemTitle,
+  ItemDescription,
+} from "@/components/ui/item";
+import { EmptyPage } from "@/components/EmptyPage";
 
 export function CountryDetails() {
   const { code } = useParams();
@@ -10,7 +18,7 @@ export function CountryDetails() {
   });
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <EmptyPage isLoading={true} />;
   }
   if (error) {
     console.error("Error fetching country details:", error);
@@ -20,10 +28,29 @@ export function CountryDetails() {
   const country = data?.country;
 
   return (
-    <div>
-      <p>Country Details for {country?.name}</p>
-      <p>Code: {country?.code}</p>
-      <p>Emoji: {country?.emoji}</p>
+    <div className="max-w-2xl mx-auto p-6">
+      <Item variant="outline" size="default" className="shadow-lg">
+        <ItemMedia>
+          <span className="text-6xl">{country?.emoji}</span>
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle className="text-2xl">{country?.name}</ItemTitle>
+          <ItemDescription>
+            <div className="flex flex-col gap-2 mt-2">
+              <p>
+                <span className="font-semibold">Code:</span>{" "}
+                <span className="font-mono">{country?.code}</span>
+              </p>
+              {country?.continent && (
+                <p>
+                  <span className="font-semibold">Continent:</span>{" "}
+                  {country.continent.name}
+                </p>
+              )}
+            </div>
+          </ItemDescription>
+        </ItemContent>
+      </Item>
     </div>
   );
 }
