@@ -2,7 +2,11 @@ import { ArrowUpRightIcon, Loader } from "lucide-react";
 import { Empty, EmptyHeader, EmptyTitle } from "./ui/empty";
 import { Button } from "./ui/button";
 
-export function EmptyPage({ isLoading = false }: { isLoading?: boolean }) {
+type EmptyPageProps = {
+  isLoading?: boolean;
+};
+
+export function EmptyPage({ isLoading = false }: EmptyPageProps) {
   return (
     <Empty>
       <EmptyHeader>

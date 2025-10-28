@@ -1,27 +1,21 @@
 import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
 
 import { GET_COUNTRIES } from "../api/operations";
 
 import { Country } from "../types/Country";
 import { CountryCard } from "@/components/CountryCard";
+import { EmptyPage } from "@/components/EmptyPage";
+import { toast } from "sonner";
 
 export function CountriesList() {
   const { loading, error, data } = useQuery(GET_COUNTRIES);
 
-  if (loading)
-    return (
-      <div className="flex justify-center items-center min-h-[400px]">
-        <p className="text-lg text-muted-foreground">Loading countries...</p>
-      </div>
-    );
+  if (loading) return <EmptyPage isLoading={true} />;
 
-  if (error)
-    return (
-      <div className="flex justify-center items-center min-h-[400px]">
-        <p className="text-lg text-destructive">Error: {error.message}</p>
-      </div>
-    );
+  if (error) {
+    toast.error("Error loading countries");
+    return <EmptyPage />;
+  }
 
   const countries = data?.countries || [];
 

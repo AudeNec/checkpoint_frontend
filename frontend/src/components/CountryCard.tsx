@@ -9,7 +9,11 @@ import {
 } from "@/components/ui/item";
 import { Button } from "@/components/ui/button";
 
-export const CountryCard = ({ country }: { country: Country }) => {
+type CountryCardProps = {
+  country: Country;
+};
+
+export const CountryCard = ({ country }: CountryCardProps) => {
   return (
     <Item variant="outline" className="hover:shadow-lg">
       <ItemMedia>
